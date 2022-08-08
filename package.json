@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky install"
   },
   "dependencies": {
     "next": "12.2.4",
@@ -14,7 +15,13 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "eslint": "8.21.0",
-    "eslint-config-next": "12.2.4"
+    "eslint": "^8.21.0",
+    "eslint-config-next": "12.2.4",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "2.7.1"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   }
 }
