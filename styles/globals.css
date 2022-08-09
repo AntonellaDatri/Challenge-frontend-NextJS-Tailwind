@@ -17,11 +17,11 @@ li::before {
 }
 
 .li-sueldo::before {
-  color: #51e0a6; /* or whatever color you prefer */
+  color: #51e0a6;
 }
 .li-puntos::before {
-  color: #36a2eb; /* or whatever color you prefer */
+  color: #36a2eb;
 }
 .li-bono::before {
-  color: #ffce56; /* or whatever color you prefer */
+  color: #ffce56;
 }
