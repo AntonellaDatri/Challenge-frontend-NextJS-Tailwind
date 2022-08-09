@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --my-var: brown;
+}
+
+ul {
+  list-style-type: none;
+  list-style-position: inside;
+}
+
+li::before {
+  content: "■  ";
+  font-size: x-large;
+}
+
+.li-sueldo::before {
+  color: #51e0a6; /* or whatever color you prefer */
+}
+.li-puntos::before {
+  color: #36a2eb; /* or whatever color you prefer */
+}
+.li-bono::before {
+  color: #ffce56; /* or whatever color you prefer */
+}
