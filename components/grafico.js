@@ -23,7 +23,7 @@ export default function Grafico(parameters) {
 
   return (
     <div className="flex justify-center">
-      <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+      <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm ">
         <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">
           Tu compensación
         </h5>
