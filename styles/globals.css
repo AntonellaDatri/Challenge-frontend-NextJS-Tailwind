@@ -25,3 +25,7 @@ li::before {
 .li-bono::before {
   color: #ffce56;
 }
+
+.diamond {
+  transform: rotate(45deg);
+}
