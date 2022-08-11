@@ -1,4 +1,4 @@
-export default function Total(parameters) {
+export default function ResumenCuenta(parameters) {
   const { saldo, total } = parameters;
   return (
     <div className="flex justify-center ">
