@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 export default function Alert(parameters) {
-  const { color, descripcion } = parameters;
+  const { descripcion } = parameters;
 
   const setShowAlert = () => {
     ReactDOM.render(null, document.getElementById("alert"));
@@ -12,11 +12,7 @@ export default function Alert(parameters) {
     <>
       <div
         className={
-          "bg-" +
-          color +
-          "-100 rounded-lg py-5 px-6 mb-4 text-base text-" +
-          color +
-          "-700 mb-3"
+          "bg-red-100 rounded-lg py-5 px-6 mb-4 text-base text-red-700 mb-3"
         }
         role="alert"
       >

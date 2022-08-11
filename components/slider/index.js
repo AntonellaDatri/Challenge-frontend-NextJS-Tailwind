@@ -29,7 +29,6 @@ export default function Slider(parameters) {
     if (nuevoValor < minValor || nuevoValor > maxValor) {
       ReactDOM.render(
         <Alert
-          color="red"
           descripcion={"El valor que se intenta ingresar se sale del rango "}
         />,
         document.getElementById("alert")
@@ -42,10 +41,7 @@ export default function Slider(parameters) {
       paraDistribuir * multiplicador < nuevoValor - valor
     ) {
       ReactDOM.render(
-        <Alert
-          color="red"
-          descripcion={"No hay suficiente dinero para distribuir"}
-        />,
+        <Alert descripcion={"No hay suficiente dinero para distribuir"} />,
         document.getElementById("alert")
       );
       return;
