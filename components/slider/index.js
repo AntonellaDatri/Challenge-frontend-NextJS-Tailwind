@@ -11,14 +11,12 @@ export default function Slider(parameters) {
     maxValor,
     minValor,
     multiplicador,
-    paraDistribuir,
     modificarPuntosAdistribuir,
   } = parameters;
-  const [valor, setValor] = React.useState(parameters.valor);
 
+  const [valor, setValor] = React.useState(parameters.valor);
   const porcentaje =
     (((valor - minValor) * 100) / (maxValor - minValor)).toString() + "%";
-  const colorFin = valor == maxValor ? color : "#f1f5f9";
   const valorBarra = valor == maxValor || valor == minValor ? "" : valor;
 
   const verificarYCambiarValor = (nuevoValor) => {
@@ -36,23 +34,22 @@ export default function Slider(parameters) {
       return;
     }
 
-    if (
-      maxValor >= nuevoValor &&
-      paraDistribuir * multiplicador < nuevoValor - valor
-    ) {
-      ReactDOM.render(
-        <Alert descripcion={"No hay suficiente dinero para distribuir"} />,
-        document.getElementById("alert")
-      );
-      return;
-    }
+    setPuntosADistribuir(nuevoValor);
+    setValor(nuevoValor);
+  };
 
+  const setPuntosADistribuir = (nuevoValor) => {
     let dif = nuevoValor - valor;
     modificarPuntosAdistribuir(
       (actual) => actual - dif / multiplicador,
-      nuevoValor
+      parseFloat(nuevoValor)
     );
-    setValor(nuevoValor);
+  };
+
+  const handleChange = (event) => {
+    let value = event.target.value;
+    verificarYCambiarValor(value);
+    setValor(value);
   };
 
   return (
@@ -73,37 +70,31 @@ export default function Slider(parameters) {
 
           <div className="space-y-2 mb-3">
             <div className="relative">
-              <div className="bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
-                <div
-                  className="dark:bg-cyan-400 h-2"
-                  role="progressbar"
-                  aria-label="music progress"
-                  aria-valuenow="1456"
-                  aria-valuemin="0"
-                  aria-valuemax="4550"
-                  style={{ backgroundColor: color, width: porcentaje }}
-                ></div>
-              </div>
               <div
-                className="absolute diamond top-1/2 w-4 h-4 -mt-2 -ml-2 flex items-center justify-center"
-                style={{ backgroundColor: color }}
+                className="absolute diamond top-1/2 w-5 h-5 -mt-2  flex items-center justify-center"
+                style={{ backgroundColor: `var(${color})` }}
               ></div>
               <div
-                className="absolute -mt-3 -ml-2 flex items-center justify-center flex-col"
+                className="absolute -mt-8 -ml-2 flex text-slate-500 text-sm leading-6 font-medium tabular-nums"
                 style={{ left: porcentaje }}
               >
-                <div
-                  className="diamond w-4 h-4 top-1"
-                  style={{ backgroundColor: color }}
-                ></div>
-                <div className="text-slate-500 mt-1 text-sm leading-6 font-medium tabular-nums">
-                  {valorBarra}
-                </div>
+                {valorBarra}
               </div>
               <div
-                className="absolute diamond top-1/2 -right-2 w-4 h-4 -mt-2 -ml-2 flex items-center justify-center"
-                style={{ backgroundColor: colorFin }}
+                className="absolute diamond top-1/2 -right-2 w-5 h-5 -mt-2 mr-2 flex items-center justify-center"
+                style={{ backgroundColor: "#cccccc" }}
               ></div>
+              <input
+                className={`seekbar h-2 ${color}`}
+                type="range"
+                min={minValor}
+                max={maxValor}
+                value={valor}
+                onChange={handleChange}
+                style={{
+                  background: `linear-gradient(to right, var(${color}) ${porcentaje}, #ccc 0px`,
+                }}
+              />
             </div>
             <div className="flex justify-between text-sm leading-6 font-medium tabular-nums">
               <div className="text-slate-500">{minValor}</div>

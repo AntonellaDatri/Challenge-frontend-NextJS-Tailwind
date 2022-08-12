@@ -7,7 +7,11 @@ export default function ResumenCuenta(parameters) {
           <div className="text-gray-400 text-xl leading-tight font-medium mb-2">
             Para distribuir
           </div>
-          <div className="text-gray-400 text-xl leading-tight font-medium mb-2">
+          <div
+            className={`${
+              saldo > 0 ? "text-gray-400" : "text-red-400"
+            } text-xl leading-tight font-medium mb-2`}
+          >
             ARS {saldo}
           </div>
         </div>

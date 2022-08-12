@@ -2,7 +2,7 @@ import React from "react";
 import Grafico from "../components/grafico";
 import Slider from "../components/slider";
 import ResumenCuenta from "../components/resumenCuenta";
-import SuccessModal from "../components/successModal";
+import ModalGenerica from "../components/modalGenerica";
 
 export default function Home() {
   const [puntosADistribuir, setPuntosADistribuir] = React.useState(1000);
@@ -27,12 +27,11 @@ export default function Home() {
         <div className="w-full mt-5">
           <Slider
             valor={valorSueldoBase}
-            color={colorSueldoBase}
+            color={"--sueldo-base-color"}
             titulo={"sueldo base"}
             descripcion={"sueldo base"}
             maxValor={2000}
             minValor={500}
-            paraDistribuir={puntosADistribuir}
             multiplicador={2}
             modificarPuntosAdistribuir={(fun, nuevoValor) =>
               modificarValores(fun, setValorSueldoBase, nuevoValor)
@@ -41,12 +40,11 @@ export default function Home() {
           <div className="mt-5"></div>
           <Slider
             valor={valorPtosMaslow}
-            color={colorPtosMaslow}
+            color={"--ptos-maslow-color"}
             titulo={"puntos maslow"}
             descripcion={"puntos canjeables en un marketplace"}
             maxValor={1000}
             minValor={0}
-            paraDistribuir={puntosADistribuir}
             multiplicador={1}
             modificarPuntosAdistribuir={(fun, nuevoValor) =>
               modificarValores(fun, setValorPtosMaslow, nuevoValor)
@@ -55,11 +53,10 @@ export default function Home() {
           <div className="mt-5"></div>
           <Slider
             valor={valorBono}
-            color={colorBono}
+            color={"--bono-anual-color"}
             titulo={"bono anual"}
             maxValor={3000}
             minValor={1000}
-            paraDistribuir={puntosADistribuir}
             multiplicador={0.5}
             modificarPuntosAdistribuir={(fun, nuevoValor) =>
               modificarValores(fun, setValorBono, nuevoValor)
@@ -79,7 +76,21 @@ export default function Home() {
           <ResumenCuenta saldo={puntosADistribuir} total={total} />
           <div className="mt-3"></div>
 
-          <SuccessModal />
+          {puntosADistribuir > 0 ? (
+            <ModalGenerica
+              titulo={"Formulario enviado con exito"}
+              descripcion={"El formulario fue enviado con exito."}
+              descripcionBoton={"enviar actualización"}
+            />
+          ) : (
+            <ModalGenerica
+              titulo={"No se pudo enviar el fomulario"}
+              descripcion={
+                "No se pudo enviar el formulario porque no hay suficiente dinero para distribuir"
+              }
+              descripcionBoton={"enviar actualización"}
+            />
+          )}
         </div>
       </div>
     </>

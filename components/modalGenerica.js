@@ -1,6 +1,8 @@
 import React from "react";
 
-export default function SuccessModal() {
+export default function ModalGenerica(parameters) {
+  const { titulo, descripcion, descripcionBoton } = parameters;
+
   const [showModal, setShowModal] = React.useState(false);
   return (
     <>
@@ -9,7 +11,7 @@ export default function SuccessModal() {
         type="button"
         onClick={() => setShowModal(true)}
       >
-        enviar actualización
+        {descripcionBoton}
       </button>
       {showModal ? (
         <>
@@ -23,7 +25,7 @@ export default function SuccessModal() {
                     className="text-xl font-medium leading-normal text-gray-800"
                     id="exampleModalLabel"
                   >
-                    Formulario enviado con exito
+                    {titulo}
                   </h5>
                   <button
                     type="button"
@@ -33,9 +35,7 @@ export default function SuccessModal() {
                   ></button>
                 </div>
                 {/*body*/}
-                <div className="modal-body relative p-4">
-                  El formulario fue enviado con exito.
-                </div>
+                <div className="modal-body relative p-4">{descripcion}</div>
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                   <button
